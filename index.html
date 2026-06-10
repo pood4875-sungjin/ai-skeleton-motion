@@ -36,6 +36,13 @@
     0%,100%{transform:scale(.975)}
     50%    {transform:scale(1.04)}
   }
+  /* ---------- 스피너 (MDS-Loader, figma) ---------- */
+  .spinner{
+    display:block; width:24.76px; height:24.76px;
+    transform-origin:center;
+    animation:spin-loader .8s linear infinite;
+  }
+  @keyframes spin-loader{ to{ transform:rotate(360deg) } }
   /* 교체되는 텍스트 페이드 */
   .rot{
     display:inline-block;
@@ -101,6 +108,7 @@
     .ai-icon{animation:none; transform:none}
     .grad-card{animation:none; --angle:120deg}
     .skeleton .bar{animation:none}
+    .spinner{animation:none}
     .rot{transition:none}
   }
 </style>
@@ -135,7 +143,12 @@
       <p class="label">B. 데이터 수집 카드 — 회전 그라데이션 테두리 (node 41140)</p>
       <div class="grad-card">
         <div class="inner" role="status" aria-label="데이터를 수집하는 중입니다">
-          <span class="ai-icon" data-icon aria-hidden="true"></span>
+          <svg class="spinner" viewBox="0 0 24.7632 24.7632" aria-hidden="true">
+            <path d="M24.7632 12.3816C24.7632 19.2198 19.2198 24.7632 12.3816 24.7632C5.54343 24.7632 0 19.2198 0 12.3816C0 5.54343 5.54343 0 12.3816 0C19.2198 0 24.7632 5.54343 24.7632 12.3816ZM4.95264 12.3816C4.95264 16.4845 8.2787 19.8106 12.3816 19.8106C16.4845 19.8106 19.8106 16.4845 19.8106 12.3816C19.8106 8.2787 16.4845 4.95264 12.3816 4.95264C8.2787 4.95264 4.95264 8.2787 4.95264 12.3816Z" fill="#CCEFF4"/>
+            <g transform="translate(12.3816 0.2055)">
+              <path d="M1.18119e-07 2.27004C1.34428e-07 0.902411 1.11952 -0.231192 2.45989 0.0405319C4.18975 0.391215 5.83436 1.10973 7.27772 2.1584C9.39309 3.6953 10.9676 5.86244 11.7756 8.3492C12.5836 10.836 12.5836 13.5147 11.7756 16.0015C11.2243 17.6982 10.3161 19.2462 9.12274 20.5467C8.19808 21.5544 6.62605 21.2953 5.82218 20.1889C5.0183 19.0824 5.31028 17.5475 6.09279 16.4259C6.50896 15.8294 6.83782 15.1713 7.06536 14.471C7.55016 12.9789 7.55016 11.3717 7.06536 9.87965C6.58056 8.38759 5.63585 7.08731 4.36663 6.16517C3.77092 5.73236 3.11808 5.39328 2.43075 5.15529C1.1384 4.7078 1.0181e-07 3.63768 1.18119e-07 2.27004Z" fill="#1BB9CD"/>
+            </g>
+          </svg>
           <div class="text">
             <span class="rot" data-rot="card">지중경사계 데이터 수집 중...</span>
           </div>
