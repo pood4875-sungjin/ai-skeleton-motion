@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI 분석 스켈레톤 모션</title>
+<style>
+  :root{
+    --emerald-50:#1bb9cd; --emerald-60:#50c9d8; --bluegray-55:#7a808d;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; padding:48px; background:#f3f5f7;
+    font-family:"Pretendard","Pretendard Variable",-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+    color:#1f2329;
+  }
+  .wrap{display:flex; gap:32px; flex-wrap:wrap; align-items:flex-start}
+  .card{
+    background:#fff; border:1px solid #e8ebee; border-radius:12px;
+    padding:20px 24px; width:608px; max-width:100%;
+    box-shadow:0 1px 2px rgba(16,24,40,.04);
+  }
+  .head{display:flex; align-items:center; justify-content:space-between; margin-bottom:16px}
+  .title{
+    display:flex; align-items:center; gap:6px;
+    font-size:16px; font-weight:600; letter-spacing:-0.19px;
+    color:var(--emerald-50);
+  }
+  .spark{
+    width:18px; height:18px; display:inline-block;
+    animation:twinkle 1.6s ease-in-out infinite;
+    transform-origin:center;
+  }
+  @keyframes twinkle{
+    0%,100%{opacity:.55; transform:scale(.82) rotate(0deg)}
+    50%    {opacity:1;   transform:scale(1)   rotate(90deg)}
+  }
+  .meta{
+    display:flex; align-items:center; gap:4px;
+    font-size:12px; color:var(--bluegray-55); letter-spacing:.5px;
+  }
+  .lottie{width:560px; max-width:100%; height:132px}
+  .label{font-size:12px; color:var(--bluegray-55); margin:0 0 10px}
+  /* 접근성: 모션 최소화 사용자에겐 정지 + 은은한 호흡 */
+  @media (prefers-reduced-motion: reduce){
+    .spark{animation:none; opacity:.8}
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div>
+      <p class="label">미리보기 — AI 분석 스켈레톤 (shimmer)</p>
+      <div class="card">
+        <div class="head">
+          <div class="title">
+            <svg class="spark" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8L12 2z" fill="currentColor"/>
+            </svg>
+            <span>AI가 경향을 분석 중...</span>
+          </div>
+          <div class="meta">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+              <path d="M12 7v5l3 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <span>10분 전 업데이트</span>
+          </div>
+        </div>
+        <div id="lottie" class="lottie" role="status" aria-label="AI가 분석 중입니다. 잠시만 기다려 주세요."></div>
+      </div>
+    </div>
+
+    <div>
+      <p class="label">다크 컨텍스트 점검</p>
+      <div class="card" style="background:#161a20; border-color:#262c34">
+        <div class="head">
+          <div class="title" style="color:var(--emerald-60)">
+            <svg class="spark" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8L12 2z" fill="currentColor"/>
+            </svg>
+            <span>AI가 예측을 분석 중...</span>
+          </div>
+          <div class="meta"><span>10분 전 업데이트</span></div>
+        </div>
+        <div id="lottie2" class="lottie" role="status" aria-label="AI가 분석 중입니다."></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+  <script>
+    function mount(id){
+      return lottie.loadAnimation({
+        container: document.getElementById(id),
+        renderer: "svg", loop: true, autoplay: true,
+        path: "ai-analysis-skeleton.json"
+      });
+    }
+    mount("lottie");
+    mount("lottie2");
+    // 모션 최소화 사용자: 정지
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches){
+      lottie.setSpeed(0);
+    }
+  </script>
+</body>
+</html>
